@@ -1,7 +1,14 @@
-import { Entity, PrimaryGeneratedColumn, BeforeInsert, BeforeUpdate,CreateDateColumn ,Column, Unique } from 'typeorm';
-import {hashSync, getRounds} from 'bcryptjs';
+import { Entity, 
+  PrimaryGeneratedColumn, 
+  BeforeInsert, BeforeUpdate, 
+  Column, 
+  Unique, 
+  OneToMany } from 'typeorm';
+import {hashSync} from 'bcryptjs';
+import { Post } from './post.entities';
+import { Gallery } from './gallery.entities';
 @Entity()
-@Unique(['email'])
+@Unique(['username'])
 export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -13,10 +20,13 @@ export class User {
   password: string;
 
   @Column({ length: 250, nullable: false })
-  email: string;
+  username: string;
 
-  @CreateDateColumn({ nullable: false })
-  createdAt: Date;
+  @OneToMany(() => Post, (posts) => posts.user,{ cascade: true, onDelete: "CASCADE" })
+  posts: Post[];
+
+  @OneToMany(() => Gallery, (gallery) => gallery.user, { cascade: true, onDelete: "CASCADE" })
+  gallery: Gallery[];
 
   @BeforeInsert()
   @BeforeUpdate()

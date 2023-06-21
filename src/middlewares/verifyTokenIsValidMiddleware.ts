@@ -19,7 +19,7 @@ const verifyTokenIsValidMiddleware = (req: Request, res: Response, next: NextFun
         }
 
         req.user = {
-            uuid: decoded.sub
+            id: decoded.sub
         }
 
         return next()

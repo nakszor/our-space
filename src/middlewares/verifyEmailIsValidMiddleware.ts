@@ -4,30 +4,28 @@ import { AppDataSource } from '../data-source'
 import { User } from '../entities/user.entities'
 import  AppError  from '../errors/appError'
 
-const verifyEmailAlreadyExists = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+const verifyUserAlreadyExists = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 
     const userRepository: Repository<User> = AppDataSource.getRepository(User)
 
-        const email = req.body.email
+        const username = req.body.username
 
-        if(email){
-            const emailAlreadyExists = await userRepository.findOne({
+        if(username){
+            const userAlreadyExists = await userRepository.findOne({
                 where: {
-                    email: req.body.email
+                    username: req.body.username
                 }
             })
         
-            if(emailAlreadyExists){
+            if(userAlreadyExists){
         
-                throw new AppError('Email already exists', 409)
+                throw new AppError('User already exists', 409)
             }
             return next()
         }
        
-
-        return next()
-   
+    return next()
 
 }
 
-export default verifyEmailAlreadyExists
+export default verifyUserAlreadyExists

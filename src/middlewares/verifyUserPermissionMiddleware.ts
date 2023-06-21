@@ -5,7 +5,7 @@ export const verifyUserPermissionMiddleware = async (req: Request,res: Response,
  
   const searchedUserId = req.params.id
 
-  const requestUserId = req.user.uuid
+  const requestUserId = req.user.id
 
   if (searchedUserId !== requestUserId) {
     throw new AppError("Sorry, you do not have permission to access this resource.", 403);

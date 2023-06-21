@@ -13,7 +13,7 @@ const createSessionService = async (loginData: IUserLogin): Promise<any> => {
     const userRepository: Repository<User> = AppDataSource.getRepository(User)
 
     const user: User | null = await userRepository.findOneBy({
-        email: loginData.email
+        username: loginData.username
     })
 
     if(!user){

@@ -15,8 +15,8 @@ const updateUserService = async (newUserData: IUserUpdate, userId: string): Prom
      query.set({ name: newUserData.name })
     }
 
-    if (newUserData.email) {
-        query.set({ email: newUserData.email })
+    if (newUserData.username) {
+        query.set({ username: newUserData.username })
     }
 
     if (newUserData.password) {
