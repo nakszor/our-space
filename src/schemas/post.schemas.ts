@@ -23,7 +23,8 @@ const returnPostSchema = z.object({
     title: z.string(),
     type: z.string(),
     content: z.string(),
-    user: returnUserSchema
+    createdAt: z.date(),
+    user: returnUserSchema,
 });
 
 const returnMultiplePostSchema = returnPostSchema.array()

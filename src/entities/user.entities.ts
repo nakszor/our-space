@@ -3,7 +3,8 @@ import { Entity,
   BeforeInsert, BeforeUpdate, 
   Column, 
   Unique, 
-  OneToMany } from 'typeorm';
+  OneToMany, 
+  CreateDateColumn} from 'typeorm';
 import {hashSync} from 'bcryptjs';
 import { Post } from './post.entities';
 import { Gallery } from './gallery.entities';
@@ -16,11 +17,14 @@ export class User {
   @Column({ length: 250, nullable: false })
   name: string;
 
-  @Column({ length: 120 })
+  @Column({ length: 120, nullable: false  })
   password: string;
 
   @Column({ length: 250, nullable: false })
   username: string;
+
+  @CreateDateColumn({ nullable: false })
+  createdAt: Date;
 
   @OneToMany(() => Post, (posts) => posts.user,{ cascade: true, onDelete: "CASCADE" })
   posts: Post[];

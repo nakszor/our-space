@@ -1,5 +1,6 @@
 import {
     Column,
+    CreateDateColumn,
     Entity,
     ManyToOne,
     PrimaryGeneratedColumn,
@@ -11,15 +12,18 @@ import {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column({ type: "varchar" })
+    @Column({ type: "varchar",nullable: false })
     type: string;
 
-    @Column({ type: "varchar" })
+    @Column({ type: "varchar",nullable: false })
     title: string;
 
-    @Column({ type: "text" })
+    @Column({ type: "text",nullable: false })
     content: string;
-  
+
+    @CreateDateColumn({ nullable: false })
+    createdAt: Date;
+
     @ManyToOne(() => User, (user) => user.posts)
     user: User;
   

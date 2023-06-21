@@ -29,7 +29,8 @@ const createdUserSchema = z.object({
     id: z.string(),
     name: z.string().max(250),
     username: z.string().max(20),
-    password: z.string().max(150)
+    password: z.string().max(150),
+    createdAt: z.date()
 });
 
 const returnUserSchema = createdUserSchema.omit({password: true})
