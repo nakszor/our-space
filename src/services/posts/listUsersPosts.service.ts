@@ -3,7 +3,6 @@ import { AppDataSource } from "../../data-source"
 import { Post } from "../../entities/post.entities"
 import { IPostsResponse } from "../../interfaces/post.interfaces"
 import { returnMultiplePostSchema } from "../../schemas/post.schemas"
-import User from "../../entities/user.entities"
 
 const listUserPostsService = async (userId: string): Promise<IPostsResponse> => {
 
